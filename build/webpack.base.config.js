@@ -13,6 +13,30 @@ module.exports = {
       use: [{
         loader: 'babel-loader'
       }]
+    }, {
+      test: /\.scss$/,
+      exclude: path.resolve(__dirname, './src/styles'),
+      use: [{
+        loader: 'style-loader'
+      },{
+        loader: 'sass-loader'
+      },{
+        loader: 'css-loader',
+        options: {
+          modules: true,
+          localIdentName: '[name]-[local]--[hash:base64:5]'
+        }
+      }]
+    },{
+      test:/\.scss$/,
+      include: path.resolve(__dirname, './src/styles'),
+      use: [{
+        loader: 'style-loader'
+      },{
+        loader: 'css-loader'
+      },{
+        loader: 'sass-loader'
+      }]
     }]
   },
   plugins: [
