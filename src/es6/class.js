@@ -20,4 +20,13 @@ function list(p) {
   }
 }
 list(p);
-/**/
+/*立即调用类，创建单例*/
+let student = new class {
+  constructor(name) {
+    this.name = name;
+  }
+  sayName() {
+    console.log('Student: ' + this.name);
+  }
+}();
+student.sayName();
