@@ -1,1 +1,1 @@
-const i = 5;
+import './es6/class.js';
