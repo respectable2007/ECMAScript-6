@@ -73,8 +73,55 @@
    console.log(pick.length);//函数对象的length只包含具名参数
    console.log(arguments[0] === keys[0]);
  }
- pick({
+ /* pick({
    year: 2017,
    name: 'juanjuan'
- }, 'year');
+ }, 'year'); */
+ 
+ /* 扩展运算符 */
+ let args = [10, 20, 14, 50];
+ /* console.log(Math.max(args, 20));//NaN
+ console.log(Math.max.apply(Math, args));//50
+ console.log(Math.max(...args));//50,将数组项做为函数参数传入 */
+
+ /* new.target */
+ /* 函数的用途 */
+ /* function Person(name) {
+   this.name = name;
+ }
+ let p1 = new Person('juanjuan'),
+   p2 = Person('juanjuan');
+ console.log(p1);//Person对象的实例
+ console.log(p2);//undefined */
+
+ /* ES5判断函数如何被调用 */
+ function Person(name) {
+   if(this instanceof Person) {
+     this.name = name;
+   } else {
+     throw new Error('error');
+   }
+ }
+ let p1 = new Person('juanjuan');
+     /* p2是调用函数，并未使用new运算符，但判断条件凑效了。
+        因此，这个判断方法失效，但也没有合适的方法解决这个
+        问题，因此ES6提出了new.target*/
+     p2 = Person.call(p1, 'shuaijuan');
+    //  p3 = Person('juanjuan');
+  /* console.log(p1);
+  console.log(p2);//this为Person的实例对象，未报错，返回undefined
+  console.log(p3);//报错 */
+
+  /* new.target判断函数调用方式 */
+  function Student(name) {
+    if(new.target === Student) {
+      this.name = name;
+    } else {
+      console.log('error');
+    }
+  }
+  let s1 = new Student('juanjuan'),
+      s2 = Student.call(s1, 'huahua');
+  console.log(s1);
+  console.log(s2);
 })();
