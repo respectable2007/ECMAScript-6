@@ -1,4 +1,8 @@
+function doSomething() {
+  console.log(111);
+}
 (function(){
+  "use strict";
  /* 带默认值的函数 */
  function array(url, time = 2000, callback = function() {console.log(111);}) {
     console.log(url);
@@ -102,7 +106,7 @@
      throw new Error('error');
    }
  }
- let p1 = new Person('juanjuan');
+ let p1 = new Person('juanjuan'),
      /* p2是调用函数，并未使用new运算符，但判断条件凑效了。
         因此，这个判断方法失效，但也没有合适的方法解决这个
         问题，因此ES6提出了new.target*/
@@ -120,8 +124,23 @@
       console.log('error');
     }
   }
-  let s1 = new Student('juanjuan'),
-      s2 = Student.call(s1, 'huahua');
+  /* let s1 = new Student('juanjuan'),
+      s2 = Student.call(s1, 'huahua');//报错
   console.log(s1);
-  console.log(s2);
+  console.log(s2); */
+
+  /* 块级函数,js引擎遵循如下规则：1、允许在块级作用域（花括号）内声明函数。
+     2、函数声明类似于var，即会提升到全局作用域或函数作用域的顶部。
+     3、函数声明会提升到所在的块级作用域的顶部。 */
+  if(false) {
+    console.log(typeof doSomething);
+    function doSomething() {
+      console.log(111)
+    }
+    doSomething();
+  }
+  /* 返回undefined是因为，函数声明变量（函数name属性）提升到函数作用域的顶部，
+  但因为代码块是false，函数声明变量并未被赋值*/
+//   console.log(typeof doSomething);
+//   doSomething();//报错
 })();
