@@ -140,7 +140,40 @@ function doSomething() {
     doSomething();
   }
   /* 返回undefined是因为，函数声明变量（函数name属性）提升到函数作用域的顶部，
-  但因为代码块是false，函数声明变量并未被赋值*/
+  但因为代码块是false，函数声明变量并未被赋值；
+  在函数作用域外部声明了相同名称的函数，也会返回undefined，
+  与作用域链查找有关，先找到一个值为undefined的doSomething变量*/
 //   console.log(typeof doSomething);
 //   doSomething();//报错
+  
+  /* 箭头函数 */
+  let num1 = 12,
+      num2 = 14,
+      /* 空参数 */
+      f1 = () => 'juanjuan',
+      /* 单个参数 */
+      f2 = num => ++num,
+      /* 多个参数 */
+      f3 = (num1, num2) => num1 + num2,
+      /* 含有多个语句 */
+      f4 = (num1, num2) => {
+        let sum = num1 + num2;
+        return sum *= 4;
+      },
+      /* 空函数 */
+      f5 = () => {},
+      /* 对象字面量 */
+      f6 = num => ({
+        id: num,
+        name: 'juanjuan'
+      });
+  console.log(f1());//'juanjuan'
+  console.log(f2(num1));//13
+  console.log(f3(num1, num2));//26
+  console.log(f4(num1, num2));//104
+  console.log(f5());//undefined
+  console.log(f6(num1));//{id: 12,name: 'juanjuan'}
+
+  /* 箭头函数this */
+  
 })();
