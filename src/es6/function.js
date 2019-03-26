@@ -202,4 +202,36 @@ function doSomething() {
   };
   menu1.init();//不会报错，事件处理函数是箭头函数，this由靠它最近的函数决定，指向menu1
   /* 箭头函数没有arguments对象，但可以引用其他函数的arguments对象 */
+
+  /* 尾调用优化的条件：1、严格模式；2、另一个函数返回结果后不能参与其他操作，包括赋值；
+     3、另一函数返回的结果作为函数的返回值，且立即被返回；
+     4、另一个函数不能引用当前栈帧的变量（不能是闭包）,只要将当前栈帧的变量作为参数传入另
+     一个函数即可，是因为这些变量变成了另一个函数的内部变量，闭包的话，不是这个函数的内部
+     变量，需要从作用域链查找所得的。
+     常被用于优化递归函数，以阶乘函数为例。
+  */
+  function call(x){
+    return ++x;
+  }
+  function tailCall(x) {
+    return call(x);//尾调用优化
+  }
+//   console.log(tailCall(10));//11
+  /* 尾调用未优化 */
+  function fac1(n) {
+    if(n === 1) {
+      return 1 ;
+    }
+    return n * fac1(n -1);
+  }
+  console.log(fac1(4));//24
+  /* 尾调用优化 */
+  function fac(n, p = 1) {
+    if(n === 1) {
+      return p * 1 ;
+    }
+    let result = p * n ;
+    return fac(n -1, result);
+  }
+  console.log(fac(4));//24
 })();
