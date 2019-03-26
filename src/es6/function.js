@@ -175,5 +175,31 @@ function doSomething() {
   console.log(f6(num1));//{id: 12,name: 'juanjuan'}
 
   /* 箭头函数this */
-  
+  let menu = {
+    id: 1024,
+    init: function() {
+      document.addEventListener('click', function(e) {
+        this.do(e.target,e.type);
+      }, false)
+    },
+    do: function(target,type) {
+      console.log(target + ' is ' + type + 'ed.');
+    }
+  }
+//   menu.init();//点击document，会报错。事件处理函数的this指向的是document，而不是menu对象，
+                 //有2个解决方法：1、使用call、apply、bind改变其作用域；2、箭头函数
+  /* 对menu进行改进，以达到预期效果 */
+  let menu1 = {
+    id: 1024,
+    init: function() {
+      document.addEventListener('click', (e) => {
+        this.do(e.target.nodeName,e.type);
+      },false)
+    },
+    do: function(target,type) {
+      console.log(target + ' is ' + type + 'ed.');
+    }
+  };
+  menu1.init();//不会报错，事件处理函数是箭头函数，this由靠它最近的函数决定，指向menu1
+  /* 箭头函数没有arguments对象，但可以引用其他函数的arguments对象 */
 })();
