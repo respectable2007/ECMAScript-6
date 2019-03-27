@@ -4,6 +4,8 @@
 // import './es6/string.js';
 // import './es6/regexp';
 /* function */
-import './es6/function.js';
+// import './es6/function.js';
+/* object */
+import './es6/object.js';
 /* class */
 // import './es6/class.js';
