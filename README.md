@@ -23,9 +23,7 @@ new.target<br>
 尾调用及尾调用优化<br>
 ## 5、对象功能扩展<br>
 对象字面量扩展<br>
-方法扩展<br>
-扩展运算符<br>
-new.target<br>
-块级函数<br>
-箭头函数<br>
-尾调用及尾调用优化<br>
+方法扩展-is、assign<br>
+对象自有属性枚举顺序<br>
+setPrototypeOf<br>
+super<br>
