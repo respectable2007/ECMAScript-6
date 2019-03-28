@@ -134,4 +134,16 @@
    let {location:{ community:{name1}},range: [index]} = list;
    console.log(name1);//qianjiangwan
    console.log(index);//0
+
+   /* 函数参数解构 */
+   function set(name,{age = 24, sex = 'female'} = {}) {
+     console.log(name);
+     console.log(age);
+     console.log(sex);
+   }
+   /* 即使参数解构内每个项都设置了默认值，也会报错，
+   是因为，传入的参数解构的最终值为undefined，与
+   每一项的默认值无关。
+   可通过设置整个参数解构的默认值解决这个问题 */
+   set('juanjuan');
 })();
