@@ -13,11 +13,13 @@
     type2: 'moveover',
     name2: 'mouse'
   },
-  { type, name, value} = node;
+  /* 默认值 */
+  { type, name, value = '1'} = node;
   console.log(type); //click
   console.log(name); //target
-  /* 使用解构声明变量，且当未查找到相同的属性名，则该变量为undefined */
-  console.log(value); //undefined
+  /* 使用解构声明变量，且当未查找到相同的属性名，则该变量为undefined，
+  当设有默认值时，其值是默认值 */
+  console.log(value); //1
 
    /* let同名报错 */
    /* let { type, name} = node; */
@@ -71,9 +73,12 @@
      }
    },
    { others: { developer}} = menu;
-   console.log(developer.name);//juanjuan
-   console.log(developer.job);//web-front
+   /* console.log(developer.name);//juanjuan
+   console.log(developer.job);//web-front */
 
    /* 无意义的声明 */
    let { others: {}} = menu;
+
+   /* 数组解构 */
+   
 })();
