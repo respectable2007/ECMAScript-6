@@ -27,3 +27,6 @@ new.target<br>
 对象自有属性枚举顺序<br>
 setPrototypeOf<br>
 super<br>
+## 6、解构<br>
+对象解构<br>
+数组解构<br>
