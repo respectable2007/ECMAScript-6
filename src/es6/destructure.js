@@ -80,5 +80,58 @@
    let { others: {}} = menu;
 
    /* 数组解构 */
+   let nums = [1, 2, 3];
+
+   /* 常规解构 */
+   /* let [n1, n2, n3] = nums;
+   console.log(n1); //1
+   console.log(n2); //2
+   console.log(n3); //3 */
+
+   /* 忽略某些项 */
+   /* let [,,n] = nums;
+   console.log(n);//3 */
    
+   /* 不提供初始值，会报错 */
+   /* let [n,,]; */
+   
+   /* 可使用解构对已声明的变量赋值 */
+   /* let [n1, n2, n3] = nums;
+   console.log(n1);//1
+   console.log(n2);//2
+   console.log(n3);//3
+   [n1, n2, n3] = [4, 5, 6];
+   console.log(n1);//4
+   console.log(n2);//5
+   console.log(n3);//6 */
+
+   /* 可使用解构赋值表达式互换变量值，无需第三方变量 */
+   let a = 10, b =20;
+   [a, b] = [b, a];
+   console.log(a);//20
+   console.log(b);//10
+
+   /* 剩余项，可用来克隆数组 */
+  /*  let [n1, ...n] = nums;
+   console.log(n1);//1
+   console.log(n);//[2,3] */
+
+   /* 混合解构 */
+   let list = {
+     type: 'item',
+     name: 'juanjuan',
+     location: {
+       district: 'binjiang',
+       road: 'dongxindadao',
+       NO: 310010,
+       community: {
+         name1: 'qianjiangwan',
+         name2: 'hetianshangcheng'
+       }
+     },
+     range: [0,1]
+   };
+   let {location:{ community:{name1}},range: [index]} = list;
+   console.log(name1);//qianjiangwan
+   console.log(index);//0
 })();
