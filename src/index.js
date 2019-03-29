@@ -8,6 +8,8 @@
 /* object */
 // import './es6/object.js';
 /* destructure */
-import './es6/destructure.js';
+// import './es6/destructure.js';
+/* symbol */
+import './es6/symbol.js';
 /* class */
 // import './es6/class.js';
