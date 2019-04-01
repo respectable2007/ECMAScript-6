@@ -1,5 +1,5 @@
-(() => {
-  "use strict";
+(function(){
+  // "use strict";
   /* 创建符号值 */
   let symbol = Symbol('url');
   console.log(symbol);//Symbol('url')
@@ -96,4 +96,13 @@
   console.log(Object.prototype.toString.call(p));//[object Person]
 
   /* Symbol.unscopables，在with语句中不能使用array的某些方法或属性,示例请查看index.html */
+  Array.prototype[Symbol.unscopables] = Object.assign(Object.create(null), {
+    push: true
+  })
+  let s1 = [1, 2, 3],
+      s2 = 4;
+  with(s1) {
+    push(s2);
+  }
+  console.log(s1);//报错，push方法在with语句内无法识别
 })()
