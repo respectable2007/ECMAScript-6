@@ -50,5 +50,22 @@
   /* Map中的对象引用，若map不被置为null，则一直占用内存，不能被收回，
      造成内存泄漏。WeakMap可以解决这个问题，当只剩下WeakMap中的对象
      引用，不影响垃圾回收，可以释放内存 */
- 
+ let weakmap = new WeakMap();
+ weakmap.set(o, 'wa');
+//  weakmap.set(o2, 'wa');//报错，null不能为WeakMap的键
+//  weakmap.set(o3, 'wa');//报错，undefined不能为WeakMap的键
+
+  /* 读取键的值 */
+  console.log(weakmap.get(o));//'wa'
+
+  /* 删除某一个键 */
+  weakmap.delete(o);
+  console.log(weakmap.get(o));//undefined
+
+  /* 以下属性或方法WeakMap均不支持 */
+  console.log(weakmap.size);//undefined
+//   weakmap.clear();//报错
+//   weakmap.forEach(()=>{});//报错
+//    weakmap.keys();//报错
+    // weakmap.values();//报错
 })()
