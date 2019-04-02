@@ -22,7 +22,7 @@
   set1.delete('5');//‘5’不在set1中，因此，不影响set1
   set1.delete(5);
   console.log(set1.size);//5
-  /* forEach,遍历set */
+  /* forEach,遍历set，回调函数参数：key==value，set本身 */
   set1.forEach((key, value, set) => {
     console.log(key + ':' + value);
     console.log(Object.is(set1, set));
@@ -45,6 +45,9 @@
   obj = null;//obj的引用解除，此时对之前对象的引用只剩set1对他的引用，但在set1中并未对这个对象的解除引用
   console.log(set1);//{0,{0::6,1:7,length:2}}
 console.log('*************************************')
+  /* Set中的对象引用，若Set不被置为null，则一直占用内存，不能被收回，
+     造成内存泄漏。WeakSet可以解决这个问题，当只剩下WeakSet中的对象
+     引用，不影响垃圾回收，可以释放内存 */
   /* WeakSet */
   /* 只允许对对象的弱引用 */
   let weakset = new WeakSet(),
