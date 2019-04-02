@@ -10,6 +10,8 @@
 /* destructure */
 // import './es6/destructure.js';
 /* symbol */
-import './es6/symbol.js';
+// import './es6/symbol.js';
+/* set */
+import './es6/set.js';
 /* class */
 // import './es6/class.js';
