@@ -40,7 +40,10 @@ super<br>
 符号转换<br>
 内置符号<br>
 ## 8、集合类型-set<br>
-创建符号<br>
-使用符号<br>
-识别符号<br>
-共享符号<br>
+创建set<br>
+set方法<br>
+weakset<br>
+## 8、集合类型-map<br>
+创建map<br>
+map方法<br>
+weakmap<br>

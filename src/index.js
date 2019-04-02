@@ -13,5 +13,7 @@
 // import './es6/symbol.js';
 /* set */
 import './es6/set.js';
+/* map */
+// import './es6/map.js';
 /* class */
 // import './es6/class.js';
