@@ -44,4 +44,24 @@
   set1.add(obj);
   obj = null;//obj的引用解除，此时对之前对象的引用只剩set1对他的引用，但在set1中并未对这个对象的解除引用
   console.log(set1);//{0,{0::6,1:7,length:2}}
+console.log('*************************************')
+  /* WeakSet */
+  /* 只允许对对象的弱引用 */
+  let weakset = new WeakSet(),
+      o = {},
+      w = 1;
+  weakset.add(o);
+//   weakset.add(1);//报错，不允许添加基本数据类型
+//  weakset.has(1);//不报错
+  console.log(weakset.has(o));//true
+  weakset.delete(o);
+  console.log(weakset.size);//undefined,无这个属性
+  /* 报错，无这个方法 */
+  /* weakset.forEach((key) => {
+    console.log(key);
+  }) */	
+  /* 报错，无这个方法 */
+  /* weakset.clear(); */
+  /* 报错，无这个方法，WeakSet无迭代器 */
+  /* weakset.keys(); */
 })()
