@@ -76,5 +76,5 @@
  /* keys(),返回一个包含集合内的键的迭代器，Set的话，values和keys迭代器相同*/
  for(let i of arr.keys()){
     console.log(i);//依次输出'0' '1' '2' '3'
-   }
+ }
 })()
