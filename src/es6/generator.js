@@ -38,4 +38,10 @@
  console.log(objIterator.next());//{value:'f',done:false}
  console.log(objIterator.next());//{value:'g',done:false}
  console.log(objIterator.next());//{value:undefined,done:false}
+
+ /* for-of，迭代可迭代对象（ES6中包含数组、Map、Set） */
+ let arr = [ '!', '@', '#', '$'];
+ for(let i of arr) {
+   console.log(i);//依次输出'!' '@' '#' '$'
+ } 
 })()
