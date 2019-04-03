@@ -14,6 +14,10 @@
 /* set */
 // import './es6/set.js';
 /* map */
-import './es6/map.js';
+// import './es6/map.js';
+/* iterator */
+// import './es6/iterator.js';
+/* generator */
+import './es6/generator.js';
 /* class */
 // import './es6/class.js';

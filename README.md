@@ -47,3 +47,7 @@ weakset<br>
 创建map<br>
 map方法<br>
 weakmap<br>
+## 9、迭代器<br>
+ES5实现方法<br>
+map方法<br>
+weakmap<br>
