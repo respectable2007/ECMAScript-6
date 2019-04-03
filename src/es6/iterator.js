@@ -1,4 +1,5 @@
 (() => {
+  /* ES5实现迭代器 */
   function createIterator(items) {
     var i = 0;
     return {
