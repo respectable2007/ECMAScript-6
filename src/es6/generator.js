@@ -43,5 +43,38 @@
  let arr = [ '!', '@', '#', '$'];
  for(let i of arr) {
    console.log(i);//依次输出'!' '@' '#' '$'
- } 
+ }
+ /* 可使用Symbol.iterator检测是否为可迭代对象 */
+ console.log(typeof arr[Symbol.iterator] === 'function');//true
+ /* 创建可迭代对象 */
+ let o = {
+   a: 'a',
+   b: 'b',
+   c: 'c',
+   *[Symbol.iterator]() {
+      for(let i in this) {
+        yield i;
+      }
+   }
+ };
+ for(let i of o) {
+   console.log(i);//依次输出'a' 'b' 'c'
+ }
+
+ /* 内置迭代器-集合迭代器 */
+ /* entries()，返回一个包含键值对的迭代器，也返回一个可迭代对象*/
+ console.log(arr.entries());
+ console.log(typeof arr.entries()[Symbol.iterator] === 'function');
+ /* for-of调用arr.entries[Symbol.iterator]()创建的迭代器，Set数组两项相同*/
+ for(let i of arr.entries()) {
+   console.log(i);//依次输出[0, "!"] [1, "@"] [2, "#"] [3, "$"]
+ }
+ /* values(),返回一个包含集合内的值的迭代器 */
+ for(let i of arr.values()){
+  console.log(i);//依次输出'!' '@' '#' '$'
+ }
+ /* keys(),返回一个包含集合内的键的迭代器，Set的话，values和keys迭代器相同*/
+ for(let i of arr.keys()){
+    console.log(i);//依次输出'0' '1' '2' '3'
+   }
 })()
