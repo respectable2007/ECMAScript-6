@@ -125,9 +125,37 @@
   let rIterator = returnIterator();
   console.log(rIterator.next());//{value:1,done:false}
   console.log(rIterator.next());//{value:'a',done:true}
-  console.log(rIterator[Symbol.iterator] === 'function');//false
-  /* 生成器返回的迭代器不是可迭代对象，for-of循环无效 */
+  console.log(typeof rIterator[Symbol.iterator] === 'function');//true
+  /* 以下代码，rIterator虽然为可迭代对象，但是，其内部已经执行到return语句，
+    之后的yield语句不会被执行。所以，不会有输出，若将以上两条next方法注释掉。
+    会只输出1，而不会输出'a' */
   for(let i of rIterator) {
-    console.log(i);
+    console.log(i);//无输出
   }
+
+  /* yield*语句 */
+  function *h() {
+    yield 'Hello';
+    return 'Hello';
+  }
+  function *j() {
+    yield 1;
+    let res = yield *h();
+    yield res + ' World!';
+  }
+  let yIterator = j();
+  console.log(yIterator.next());//{value:1,done:false}
+  console.log(yIterator.next());//{value:'Hello',done:false}
+  console.log(yIterator.next());//{value:'Hello World!',done:false}
+  console.log(yIterator.next());//{value:undefined,done:true}
+  /* 任何具有[Symbol.iterator]符号函数的数据都可以使用yield*进行迭代 */
+  let yy = (function *() {
+    yield 'x';
+    yield * 'abcdefg';
+  }())
+  console.log(yy.next().value);//x
+  console.log(yy.next().value);//a
+
+  /* 生成器与异步编程 */
+  
 })()
