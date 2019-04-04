@@ -157,5 +157,23 @@
   console.log(yy.next().value);//a
 
   /* 生成器与异步编程 */
-  
+  function run(taskIterator) {
+    let iterator = taskIterator(),
+        result = iterator.next();
+    function step() {
+      /* 递归判断 */
+      if(!result.done) {
+        result = iterator.next(result.value);//通过next传递参数
+        console.log(result);
+        step();
+      }
+    }
+    /* 开始处理业务 */
+    step();
+  }
+  run(function *() {
+    let s1 = yield 1;
+    let s2 = yield s1 + 2;
+    yield s2 + 3;
+  })
 })()
