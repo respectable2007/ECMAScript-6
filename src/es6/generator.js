@@ -77,4 +77,18 @@
  for(let i of arr.keys()){
     console.log(i);//依次输出'0' '1' '2' '3'
  }
+ /* 集合类型默认迭代器，数组和Set是values，Map是entries */
+ let ar = ['a', 'b', 'c'],
+     sr = new Set(ar),
+     mr = new Map([[0, 'a'], [1, 'b'],[2, 'c']]);
+ for(let i of ar) {
+   console.log(i);//依次输出'a' 'b' 'c'
+ }
+ for(let i of sr) {
+   console.log(i);//依次输出'a' 'b' 'c'
+ }
+ mr.set(3, 'd');
+ for(let i of mr) {
+   console.log(i);//依次输出[0, 'a'] [1, 'b'] [2,'c'] [3, 'd']
+ }
 })()

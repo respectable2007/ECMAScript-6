@@ -53,3 +53,4 @@ ES5实现方法<br>
 可迭代对象<br>
 for-of<br>
 Symbol.iterator<br>
+集合类型迭代器<br>
