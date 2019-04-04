@@ -91,4 +91,43 @@
  for(let i of mr) {
    console.log(i);//依次输出[0, 'a'] [1, 'b'] [2,'c'] [3, 'd']
  }
+ /* 迭代器的高级用法 */
+ /* 给next方法传入参数 */
+ function *advanceIterator() {
+   try {
+     for(let i = 0; i < 8; i++) {
+       yield i;
+     }
+   } catch(ex) {
+     let s = 'ex';
+     yield s + 3;
+   }
+ }
+ let iterator = advanceIterator();
+ /* 正常运行迭代器 */
+ console.log(iterator.next());//{value:1,done:false}
+ console.log(iterator.next(1));//{value:3,done:false}
+ console.log(iterator.next(2));//{value:5,done:false}
+ console.log(iterator.next(3));//{value:undefined,done:false}
+
+  /* 包含错误运行迭代器 */
+  console.log(iterator.next());//{value:undefined,done:false}
+  console.log(iterator.next(1));//{value:undefined,done:false}
+  console.log(iterator.throw(new Error('error')));//抛出异常
+  console.log(iterator.next(3));//{value:undefined,done:true}
+
+  /* 生成器内return */
+  function *returnIterator() {
+    yield 1;
+    return 'a';
+    yield 2;//永远不会被执行
+  }
+  let rIterator = returnIterator();
+  console.log(rIterator.next());//{value:1,done:false}
+  console.log(rIterator.next());//{value:'a',done:true}
+  console.log(rIterator[Symbol.iterator] === 'function');//false
+  /* 生成器返回的迭代器不是可迭代对象，for-of循环无效 */
+  for(let i of rIterator) {
+    console.log(i);
+  }
 })()
