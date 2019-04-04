@@ -47,10 +47,12 @@ weakset<br>
 创建map<br>
 map方法<br>
 weakmap<br>
-## 9、迭代器<br>
+## 9、迭代器和生成器<br>
 ES5实现方法<br>
 生成器<br>
 可迭代对象<br>
 for-of<br>
 Symbol.iterator<br>
 集合类型迭代器<br>
+字符串和NodeList迭代器<br>
+扩展运算符<br>
