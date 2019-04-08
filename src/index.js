@@ -18,8 +18,8 @@
 /* iterator */
 // import './es6/iterator.js';
 /* generator */
-import './es6/generator.js';
+// import './es6/generator.js';
 /* string iterator */
 // import './es6/stringIterator.js';
 /* class */
-// import './es6/class.js';
+import './es6/class.js';

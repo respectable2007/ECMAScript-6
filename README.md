@@ -57,3 +57,7 @@ Symbol.iterator<br>
 字符串和NodeList迭代器<br>
 扩展运算符<br>
 迭代器传参、错误对象、return语句<br>
+## 11、类继承<br>
+extends<br>
+super<br>
+表达式<br>
