@@ -61,3 +61,6 @@ Symbol.iterator<br>
 extends<br>
 super<br>
 表达式<br>
+内置对象<br>
+Symbol.species<br>
+new.target<br>

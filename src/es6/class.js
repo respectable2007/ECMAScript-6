@@ -140,4 +140,39 @@ class Y extends mix(i, k) {
 let m = new Y(4, 5);
 console.log(m.area());//20
 console.log(m.s());//{"width":4,"length":5}
+
+/* 内置对象 */
+/* ES5中传统继承机制无法继承内置对象，以Array为例 */
+function MyArray() {
+  Array.apply(this, arguments);
+}
+MyArray.prototype = Object.create(Array.prototype, {
+  constructor: MyArray
+})
+let c = new MyArray();
+c[0] = 1;
+console.log(c[0]);
+console.log(c.length);//0,没有真正继承了Array，若继承了，length属性值应为1
+console.log(c instanceof Array);//true
+
+/* ES6允许继承内置对象，以Array为例 */
+class MyArray1 extends Array {
+  static get [Symbol.species]() {
+    return Array;
+  }
+}
+let c1 = new MyArray1(),
+    c2 ;
+c1[0] = 2;
+console.log(c1.length);//1，真正继承了Array
+c1.length = 0;
+console.log(c1[0]);//undefined
+/* 静态方法直接在类上定义
+let desc = Object.getOwnPropertyDescriptor(MyArray1, Symbol.species);
+console.log(desc); */
+
+/* Symbol.species，指定类实例对象调用方法创建对象实例时的构造器或构造函数，是一个静态访问器属性 */
+c2 = c1.slice();
+console.log(c2 instanceof MyArray1);//false
+console.log(c2 instanceof Array);//true
 })()
