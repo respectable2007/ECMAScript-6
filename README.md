@@ -67,4 +67,6 @@ new.target<br>
 ## 12、增强的数组<br>
 Array.of<br>
 Array.from<br>
-<br>
+find/findIndex<br>
+fill<br>
+copyWithin<br>
