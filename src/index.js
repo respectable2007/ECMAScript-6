@@ -22,4 +22,6 @@
 /* string iterator */
 // import './es6/stringIterator.js';
 /* class */
-import './es6/class.js';
+// import './es6/class.js';
+/* array */
+import './es6/array.js';

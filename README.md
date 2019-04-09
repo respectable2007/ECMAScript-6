@@ -64,3 +64,7 @@ super<br>
 内置对象<br>
 Symbol.species<br>
 new.target<br>
+## 12、增强的数组<br>
+Array.of<br>
+Array.from<br>
+<br>
