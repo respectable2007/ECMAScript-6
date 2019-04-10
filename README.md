@@ -70,3 +70,5 @@ Array.from<br>
 find/findIndex<br>
 fill<br>
 copyWithin<br>
+类型化数组<br>
+数组缓冲区<br>

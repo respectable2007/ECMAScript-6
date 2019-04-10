@@ -44,4 +44,11 @@
   //console.log(numbers.copyWithin(4,0));//[1,2,3,4,1,2,3,4]
   /* 接收3个参数，从哪个位置开始修改，从哪个位置开始复制，从哪个位置结束复制（不包括结束位置） */
   console.log(numbers.copyWithin(4,0,2));//[1,2,3,4,1,2,7,8]
+
+  /* 类型化数组 */
+  /* 数组缓冲区 */
+  let buf = new ArrayBuffer(12);
+  console.log(buf.byteLength);//12
+  let buf1 = buf.slice(4,6);
+  console.log(buf1.byteLength);//2
 })()
