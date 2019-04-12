@@ -117,5 +117,11 @@ import { type } from "os";
  /* 在map方法中，返回的为字符串，与类型化数组允许的类型不符合，则转为0。 */
  console.log(u8);//Int8Array(3) [0, 0, 0]
 
- /* set，从一个数组的元素赋值给新的类型化数组 */
+ /* set，从一个数组的元素赋值给当前的类型化数组 */
+ u8.set([1,2]);
+ u8.set([3], 2);
+ console.log(u8);//Int8Array(3) [1, 2, 3]
+ /* subarray，将当前的类型化数组提取一部分形成为新的类型化数组 */
+ let u9 = u8.subarray(1, 2);
+ console.log(u9);//Int8Array(1)[2]
 })()
