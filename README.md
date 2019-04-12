@@ -76,3 +76,5 @@ copyWithin<br>
 特定类型的类型化数组<br>
 类型化数组特点<br>
 set与subarray<br>
+## 13、promise<br>
+promise<br>

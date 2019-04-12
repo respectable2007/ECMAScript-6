@@ -24,4 +24,6 @@
 /* class */
 // import './es6/class.js';
 /* array */
-import './es6/array.js';
+// import './es6/array.js';
+/* promise */
+import './es6/promise.js';
