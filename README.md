@@ -74,3 +74,5 @@ copyWithin<br>
 数组缓冲区<br>
 类型化数组读取与写入<br>
 特定类型的类型化数组<br>
+类型化数组特点<br>
+set与subarray<br>

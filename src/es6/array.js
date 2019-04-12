@@ -1,4 +1,7 @@
+import { type } from "os";
+
 (() => {
+  "use strict";
   /* Array.of，创建数组，传入数值型参数，不会成为数组的长度值 */
   let a1 = Array.of(1, '2');
   console.log(a1.length);//1
@@ -52,7 +55,7 @@
   let buf1 = buf.slice(4,6);
   console.log(buf1.byteLength);//2
   /* 读取与写入数据 */
-  let b1 = new ArrayBuffer(1);
+  let b1 = new ArrayBuffer(1),
       d = new DataView(b1, 0, 1);
   d.setInt8(0, 6);
   console.log(d.getInt8(0));//8
@@ -88,5 +91,31 @@
   console.log(u3[0]);//0，u3存储的是u1处理后的数据
   console.log(u4[0]);//19
   console.log(u5[0]);//21
+  console.log(u5.length);//2
+  /* 类型化数组length是不可写入的，松散模式下，被忽略，严格模式下报错 */
+  // u5.length = 10;//报错
+  /* 类型化数组迭代器 */
+  for(let i of u5.entries()){
+    console.log(i);//依次输出[0,21] [1,22]
+  }
+ let arr = [...u5];
+ console.log(arr instanceof Array);//true
+ console.log(arr);//[21, 22]
+ /* 类型化数组of与from方法 */
+ let u6 = Int8Array.of(23,24,25),
+     u7 = Int8Array.from([26,27,28]);
+ console.log(typeof u6);//object
+ console.log(u6 instanceof Int8Array);//true
+ console.log(u7 instanceof Int8Array);//true
 
+ /* 类型化数组不能伸展或收缩，其length是固定的 */
+ u7[3] = 29;
+ console.log(u7[3]);//undefined
+
+ /* 类型化数组会对传入的值类型进行检验，若不符合则转为0 */
+ let u8 = u7.map(v => 'h');
+ /* 在map方法中，返回的为字符串，与类型化数组允许的类型不符合，则转为0。 */
+ console.log(u8);//Int8Array(3) [0, 0, 0]
+
+ /* set，从一个数组的元素赋值给新的类型化数组 */
 })()
