@@ -59,4 +59,34 @@
   //console.log(d.getInt16(0));//报错不满足16位
   d.setInt8(0, 256);
   console.log(d.getInt8(0));//0
+  /* 类型化数组特定类型构造器 */
+  /* 创建特定类型的类型化数组，创建方式1：数组缓冲区 */
+  let u = new Int8Array(b1);
+  /* 元素大小 */
+  console.log(Int8Array.BYTES_PER_ELEMENT);//1
+  console.log(u.BYTES_PER_ELEMENT);//1
+  /* 创建特定类型的类型化数组，创建方式2：类型化数组构造器+单个数值参数 */
+  let u1 = new Int8Array(2),
+      u2 = new Int16Array(2);
+  console.log(u1.length);//2个元素
+  console.log(u1.byteLength);//2个字节
+  console.log(u2.length);//2个元素
+  console.log(u2.byteLength);//4个字节
+  /* 创建特定类型的类型化数组，创建方式3：类型化数组构造器+对象参数
+  对象参数有类型化数组、可迭代对象、数组、类数组对象 */
+  u1[0] = 256;
+  console.log(u1[0]);//超出范围，处理后，结果为0
+  u[1] = 2;
+  let u3 = new Uint16Array(u1),
+      u4 = new Int8Array([19,20]),
+      u5 = new Int8Array({
+        0:21,
+        1:22,
+        length:2
+      });
+  console.log(u3.byteLength);//4
+  console.log(u3[0]);//0，u3存储的是u1处理后的数据
+  console.log(u4[0]);//19
+  console.log(u5[0]);//21
+
 })()
