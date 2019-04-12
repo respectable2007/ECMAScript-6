@@ -51,4 +51,12 @@
   console.log(buf.byteLength);//12
   let buf1 = buf.slice(4,6);
   console.log(buf1.byteLength);//2
+  /* 读取与写入数据 */
+  let b1 = new ArrayBuffer(1);
+      d = new DataView(b1, 0, 1);
+  d.setInt8(0, 6);
+  console.log(d.getInt8(0));//8
+  //console.log(d.getInt16(0));//报错不满足16位
+  d.setInt8(0, 256);
+  console.log(d.getInt8(0));//0
 })()

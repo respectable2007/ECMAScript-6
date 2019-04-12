@@ -72,3 +72,4 @@ fill<br>
 copyWithin<br>
 类型化数组<br>
 数组缓冲区<br>
+类型化数组读取与写入<br>
