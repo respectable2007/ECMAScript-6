@@ -45,5 +45,8 @@ module.exports = {
       template: 'index.html',
       favicon: './favicon.ico'
     })
-  ]
+  ],
+  node: {
+    fs: 'empty'
+  }
 }
