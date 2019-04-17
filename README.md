@@ -77,4 +77,4 @@ copyWithin<br>
 类型化数组特点<br>
 set与subarray<br>
 ## 13、promise<br>
-promise<br>
+promise构造函数<br>
