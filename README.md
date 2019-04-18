@@ -78,3 +78,7 @@ copyWithin<br>
 set与subarray<br>
 ## 13、promise<br>
 promise构造函数<br>
+promise.prototype.then<br>
+promise.prototype.catch<br>
+Promise.resolve()<br>
+Promise.reject()<br>
