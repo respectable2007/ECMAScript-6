@@ -62,4 +62,27 @@
   })
   /* 依次输出 1 'Error' 2.5 2 theable对象 'settled' 3 */
   /* 异步操作谁最早结束，就将回调函数加入消息队列中 */
+
+  /* 全局处理rejected的Promise */
+  let rejectPromiseList = new Map();
+  window.addEventListener('unhandledrejection', function(e){
+    console.log(e);
+    rejectPromiseList.set(e.promise, e.reason);
+  }, false)
+  window.addEventListener('rejectionhandled',function(e) {
+    rejectPromiseList.delete(e.promise);
+  },false)
+  setInterval(() => {
+    rejectPromiseList.forEach(function(value,key) {
+      console.log(value.message ? value.message: value)
+      handleRejection(key, value);
+    })
+    rejectPromiseList.clear();
+  },6000);
+  function handleRejection(promise) {
+    promise.catch((reason) => {
+      console.log(reason);
+    })
+  }
+  let r = Promise.reject(42);
 })()
