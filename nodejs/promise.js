@@ -13,9 +13,12 @@ function readFile(txt) {
 }
 
 let f = readFile('../nodejs/txt/sample.txt');
-/* f对应fs.readFile异步操作
-   当读取文件成功时，将then回调函数加入作业队列；
-   读取文件失败时，将catch回调函数加入作业队列 */
+/* f对应fs.readFile异步操作，根据文件读取状态，
+   将resolve或reject添加到作业队列中。
+   调用resolve触发一个异步操作，根据这个异步操作
+   的状态，将then或catch的回调函数添加到作业队列
+   中
+*/
 f.then((data) => {
   console.log(data)
 }).catch((err) => {
