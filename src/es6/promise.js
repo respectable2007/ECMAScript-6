@@ -84,5 +84,16 @@
       console.log(reason);
     })
   }
-  let r = Promise.reject(42);
+//   let r = Promise.reject(42);
+  /* Promise链的返回值 */
+  let p1 = new Promise((resolve, reject) => {
+    resolve(43);
+  })
+  p1.then((v) => {
+    console.log(v);//43
+    /* 基本类型数值，传递给下一个Promise的完成处理或拒绝处理函数 */
+    return v + 2;
+  }).then((v) => {
+    console.log(v);//45
+  })
 })()

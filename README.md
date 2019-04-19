@@ -83,3 +83,4 @@ promise.prototype.catch<br>
 Promise.resolve()<br>
 Promise.reject()<br>
 全局处理rejected的Promise<br>
+Promise链的返回值<br>
