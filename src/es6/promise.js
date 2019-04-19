@@ -96,4 +96,41 @@
   }).then((v) => {
     console.log(v);//45
   })
+  /* Promise返回值为Promise对象 */
+  let p2 = new Promise((resolve, reject) => {
+    resolve('p2')
+  }),
+  p3 = new Promise((resolve, reject) => {
+    resolve('p3')
+  });
+  p2.then((v) => {
+    console.log(v);//p2
+    return p3;
+    /* 下方then方法挂载在p2.then方法返回的Promise对象，
+       该对象的状态与p3异步执行结果有关，若状态为rejected，
+       则调用该对象的被拒绝处理函数
+    */
+  }).then((v) => {
+    console.log(v);//p3
+  })
+  /* 监听多个Promise的方法：
+     Promise.all,所有Promise都被执行完毕，该方法返回的Promise对象完成处理函数才被调用,
+     任意一个Promise被拒绝，则返回的Promise对象立即调用被拒绝处理函数。
+     Promise.race，任意一个Promise被执行完毕，该方法返回的Promise对象完成处理函数才被调用
+  */
+  let p4 = new Promise((resolve,reject) => {
+    reject('p4');
+  })
+  jP1 = Promise.all([p2, p3, p4]);
+  jP1.then((v) => {
+    console.log(Array.isArray(v));//true
+    console.log(v);//['p2', 'p3']
+  }).catch((v) => {
+    console.log(Array.isArray(v));//false
+    console.log(v);//'p4'
+  })
+  let jP2 = Promise.race([p4, p2, p3]);
+  jP2.then((v) => {
+    console.log(v);//'p2'
+  })
 })()

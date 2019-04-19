@@ -76,7 +76,7 @@ copyWithin<br>
 特定类型的类型化数组<br>
 类型化数组特点<br>
 set与subarray<br>
-## 13、promise<br>
+## 13、Promise<br>
 promise构造函数<br>
 promise.prototype.then<br>
 promise.prototype.catch<br>
@@ -84,3 +84,4 @@ Promise.resolve()<br>
 Promise.reject()<br>
 全局处理rejected的Promise<br>
 Promise链的返回值<br>
+监听多个Promise的方法<br>
