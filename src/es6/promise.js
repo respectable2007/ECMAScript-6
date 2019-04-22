@@ -118,7 +118,7 @@
      任意一个Promise被拒绝，则返回的Promise对象立即调用被拒绝处理函数。
      Promise.race，任意一个Promise被执行完毕，该方法返回的Promise对象完成处理函数才被调用
   */
-  let p4 = new Promise((resolve,reject) => {
+  /* let p4 = new Promise((resolve,reject) => {
     reject('p4');
   })
   jP1 = Promise.all([p2, p3, p4]);
@@ -132,5 +132,38 @@
   let jP2 = Promise.race([p4, p2, p3]);
   jP2.then((v) => {
     console.log(v);//'p2'
+  }) */
+
+
+
+  /* 问题1：如何解决多个promise的嵌套问题？
+     答：使用Promise.all解决promise嵌套
+  */
+  let userName = '';
+  function getUserName(){
+    return new Promise((resolve) => {
+      userName = 'juanjuan';
+      resolve('juanjuan');
+    })
+  }
+  function getUser(){
+    return new Promise((resolve, reject) => {
+      if(userName) {
+        resolve({
+          id: 1,
+          userName: userName
+        })
+      }
+      reject('error');
+    })
+  }
+  function getUserPromise(...arrs){
+    return Promise.all([...arrs]);
+  }
+  getUserPromise(getUserName(), getUser()).then((v) => {
+    console.log(v);
+  }).catch((error) => {
+    console.log(error);
   })
+
 })()

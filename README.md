@@ -85,3 +85,4 @@ Promise.reject()<br>
 全局处理rejected的Promise<br>
 Promise链的返回值<br>
 监听多个Promise的方法<br>
+常见问题<br>
