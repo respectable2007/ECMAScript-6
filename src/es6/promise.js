@@ -165,5 +165,32 @@
   }).catch((error) => {
     console.log(error);
   })
-
+  let myPromise = new Promise((resolve, reject) => {
+    console.log('开始洗衣服。。。');
+    resolve('洗衣服完了');
+    reject('洗衣机出故障了');
+  })
+  
+  /* setTimeout(() => {
+    myPromise.then((data) => {
+      console.log(data);
+      console.log('开始晾衣服了');
+      return new MyPromise((resolve) => {
+        resolve('衣服晾好了');
+      });
+    }).then((v) => {
+      console.log(v);
+      console.log('等衣服干。。。');
+      return '衣服干了';
+    }).then((v) => {
+        console.log(v);
+        console.log('开始收衣服。。。')
+    })
+  },1000) */
+  myPromise.then((v) => {
+    console.log(v)
+  }).catch((e) => {
+    console.log(e);
+    return '洗衣机修好了';
+  })
 })()
