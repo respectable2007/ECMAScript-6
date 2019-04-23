@@ -187,10 +187,14 @@
         console.log('开始收衣服。。。')
     })
   },1000) */
-  myPromise.then((v) => {
-    console.log(v)
+  myPromise.then((data) => {
+    console.log(data);
+    console.log('开始晾衣服了');
+    return new Promise((resolve,reject) => {
+      reject('晾衣杆坏了');
+    });
   }).catch((e) => {
-    console.log(e);
-    return '洗衣机修好了';
+      console.log(e);
+      console.log('晾衣杆修好了');
   })
 })()
