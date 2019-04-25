@@ -1,10 +1,30 @@
-(() => {
-  function MyPromise (fn) {
-    this.deferreds = [];
-    this.state = 0;
-    this.value = null;
-    let _this = this;//0:pending,1:fulfilled,2:rejected
+((global, factory) => {
+  // UmD
+  if(typeof define === 'function' && define.amd) {
+    // AMD
+    define(['util'], (_) => {
+      return factory(global, _);
+    })
+  } else if(typeof module === 'object' && typeof module.exports === 'object') {
+    // node/commonJS
+    module.exports = factory(global, require('util'), true);
+  } else {
+    factory(global, global._)
+  }
+})(typeof window !== 'undefined' ? window : this, (global, _, noGlobal) => {
+   if(noGlobal !== true) {
+     global.MyPromise = MyPromise;
+   }
+   let deferreds = [],
+       rejects = [],
+       state = 0,//0:pending,1:fulfilled,2:rejected
+       value = null;
+   function MyPromise (fn) {
+    let _this = this;
     function resolve(return_value) {
+      if(state !== 0) {
+        return;
+      }
       if(return_value && (typeof return_value === 'object' || typeof return_value === 'function')) {
         const then = return_value.then;
         if(typeof then === 'function') {
@@ -12,26 +32,45 @@
           return;
         }
       }
-      _this.state = 1;
-      _this.value = return_value;
+      state = 1;
+      value = return_value;
       /* 若异步操作，跳过异步操作，会先调用then方法（resolve未触发），setTimeout函数保证resolve触发后，
          then注册函数顺序执行 */
       setTimeout(() => {
-        _this.deferreds.forEach((deferred) => {
-          deferred(_this.value);
+        deferreds.forEach((deferred) => {
+          deferred(value);
         })
       }, 0)
     }
-    fn(resolve);
+    function reject(_value) {
+      if(state !== 0) {
+        return;
+      }
+      if(_value && (typeof _value === 'object' || typeof _value === 'function')) {
+        const catches = _value.catch;
+        if(typeof catches === 'function') {
+          catches.call(_value, reject);
+          return;
+        }
+      }
+      value = _value;
+      state = 2;
+      setTimeout(() => {
+        rejects.forEach(reject => {
+          reject(value);
+        })
+      },0)
+    }
+    fn(resolve, reject);
   }
   MyPromise.prototype.then = function(deferred) {
-    if(this.state === 0) {
-      this.deferreds.push(deferred);
+    if(state === 0) {
+      deferreds.push(deferred);
       return;
     }
     let _this = this;
     function handle(resolve) {
-      const ret = deferred(_this.value);
+      const ret = deferred(value);
       /* 上一个then注册函数的返回值，做为其新生成Promise对象的resolve传参 */
       resolve(ret);
     }
@@ -40,18 +79,25 @@
     })
     
   }
-  let myPromise = new MyPromise((resolve, reject) => {
-    /* do async something */
-    resolve('开始洗衣服')
-  })
-  
-  myPromise.then((data) => {
-    console.log(data);
-    return new MyPromise((resolve,reject) => {
-      resolve('衣服洗完了');
-    })
-  }).then((data) => {
-    console.log(data);
-    return '衣服晾完了'
-  })
-})()
+  MyPromise.prototype.catch = function(fail) {
+    if( state === 0) {
+      rejects.push(fail);
+      return;
+    }
+    let that = this;
+    function handle(resolve,reject) {
+      const ret = fail(value);
+        reject(ret);
+    }
+    return new MyPromise((resolve, reject) => {
+      handle(resolve,reject);
+    });
+  }
+})
+// console.log(MyPromise);
+let myPromise = new MyPromise((resolve, reject) => {
+  resolve('begin')
+})
+myPromise.then((data) => {
+  console.log(data)
+})

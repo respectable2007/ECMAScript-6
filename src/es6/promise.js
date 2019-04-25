@@ -167,7 +167,7 @@
   })
   let myPromise = new Promise((resolve, reject) => {
     console.log('开始洗衣服。。。');
-    resolve('洗衣服完了');
+    // resolve('洗衣服完了');
     reject('洗衣机出故障了');
   })
   
@@ -195,6 +195,8 @@
     });
   }).catch((e) => {
       console.log(e);
-      console.log('晾衣杆修好了');
+      return '晾衣杆修好了';
+  }).then(d => {
+    console.log(d)
   })
 })()
