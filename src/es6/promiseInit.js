@@ -20,7 +20,7 @@
        state = 0,//0:pending,1:fulfilled,2:rejected
        value = null;
    function MyPromise (fn) {
-    let _this = this;
+    state = 0;
     function resolve(return_value) {
       if(state !== 0) {
         return;
@@ -68,7 +68,6 @@
       deferreds.push(deferred);
       return;
     }
-    let _this = this;
     function handle(resolve) {
       const ret = deferred(value);
       /* 上一个then注册函数的返回值，做为其新生成Promise对象的resolve传参 */
@@ -94,10 +93,15 @@
     });
   }
 })
-// console.log(MyPromise);
 let myPromise = new MyPromise((resolve, reject) => {
-  resolve('begin')
+  reject('begin');
 })
 myPromise.then((data) => {
   console.log(data)
+  return new MyPromise((resolve,reject) => {
+    reject('error');
+  })  
+}).catch( e => {
+  console.log(e)
 })
+/* 当第一个Promise为reject时，then方法被触发，而不是直接调用catch */

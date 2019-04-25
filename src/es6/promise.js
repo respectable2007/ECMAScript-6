@@ -167,8 +167,8 @@
   })
   let myPromise = new Promise((resolve, reject) => {
     console.log('开始洗衣服。。。');
-    // resolve('洗衣服完了');
-    reject('洗衣机出故障了');
+    resolve('洗衣服完了');
+    // reject('洗衣机出故障了');
   })
   
   /* setTimeout(() => {
@@ -190,9 +190,10 @@
   myPromise.then((data) => {
     console.log(data);
     console.log('开始晾衣服了');
-    return new Promise((resolve,reject) => {
+   /*  return new Promise((resolve,reject) => {
       reject('晾衣杆坏了');
-    });
+    }); */
+    return 'renren';
   }).catch((e) => {
       console.log(e);
       return '晾衣杆修好了';
