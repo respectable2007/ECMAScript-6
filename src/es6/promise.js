@@ -1,3 +1,5 @@
+import { type } from "os";
+
 (()=>{
   /* promise构造函数 */
   let promise = new Promise((resolve, reject) => {
@@ -205,4 +207,91 @@ function sleep(s) {
 sleep(1000).then(() => {
   console.log(2000);
 })
+
+function ajax() {
+  let object = {
+    method: 'get',
+    contentType: 'application/x-www-form-urlencoded'
+  },
+  options = Object.assign(object, arguments[0])
+  sendUrl = null,
+  xhr = new XMLHttpRequest();//IE7
+  /* 浏览器兼容性 */
+  /* function createXHR() {
+    if(typeof XMLHttpRequest !== 'undefined') {
+      return new XMLHttpRequest();
+    } else if(typeof ActiveXObject !== 'undefined') {
+
+    } else {
+      return null;
+    }
+  } */
+  /* 序列化数据 */
+  function serialize(data) {
+    let serializeData = '';
+    for(let i in data) {
+      serializeData += encodeURIComponent(i) + '=' + encodeURIComponent(data[i]) + '&'
+    }
+    return serializeData.substring(0, serializeData.length - 1)
+  }
+  let myPromise = new Promise((resolve, reject) => {
+    if(!options.hasOwnProperty('url')) {
+      reject();
+    }
+    /* readyStatechange事件 */
+    xhr.onreadystatechange = () => {
+      if(xhr.readyState === 4) {
+        if((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
+           resolve(xhr);
+        } else {
+          reject(xhr.status);
+        }
+      }
+    }
+    /* 中止事件 */
+    xhr.onabort = () => {
+      if(options.error) {
+        reject('error: aborted!')
+      } else {
+        throw new Error('error: aborted!')
+      }
+    }
+    /* 错误事件 */
+    xhr.onerror = (e) => {
+      if(options.error) {
+        reject('error:' + `${e.type}`)
+      } else {
+        throw new Error('error:' + `${e.type}`)
+      }
+    }
+
+    if(options.timeout) {
+      xhr.timeout = options.timeout;
+    }
+    /* 发送 */
+    if(options.method === 'get') {
+      options.url += '?' + serialize(options.data)
+      xhr.open(options.method, options.url, false);
+    } else {
+      xhr.open(options.method, options.url, true);
+      sendUrl = serialize(options.data);
+    }
+    /* 超时 */
+    xhr.ontimeout = () => {
+      if(options.error) {
+        reject('error: time out!')
+      } else {
+        throw new Error('error: time out!')
+      }
+    }
+    if(options.contentType) {
+      /* 添加请求头信息 */
+      xhr.setRequestHeader('Content-Type', options.contentType);
+    }
+    xhr.send(sendUrl);
+  })
+  myPromise.then(options.success)
+           .catch(options.error);
+  return xhr;
+}
 })()
