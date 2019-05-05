@@ -167,8 +167,8 @@
   })
   let myPromise = new Promise((resolve, reject) => {
     // console.log('开始洗衣服。。。');
-    // resolve('衣服洗完了');
-    reject('洗衣机出故障了');
+    resolve('衣服洗完了');
+    // reject('洗衣机出故障了');
   })
   
   /* setTimeout(() => {
@@ -187,10 +187,22 @@
         console.log('开始收衣服。。。')
     })
   },1000) */
-  myPromise.catch((e) => {
-      console.log(e);
-      return '晾衣杆修好了';
-  }).then(d => {
+  let myPromise2 = myPromise.catch((e) => {
+    // console.log(e);
+    return '晾衣杆修好了';
+})
+
+myPromise2.then(d => {
     console.log(d)
+})
+console.log(Object.is(myPromise, myPromise2));
+/* sleep函数，在指定的时间后线程被唤醒 */
+function sleep(s) {
+  return new Promise((resolve, reject) => {
+    setTimeout(resolve, s)
   })
+}
+sleep(1000).then(() => {
+  console.log(2000);
+})
 })()
