@@ -26,5 +26,5 @@
 /* array */
 // import './es6/array.js';
 /* promise */
-// import './es6/promise.js';
-import './es6/promiseInit';
+import './es6/promise.js';
+// import './es6/promiseInit';

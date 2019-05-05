@@ -104,4 +104,4 @@ myPromise.then((data) => {
 }).catch( e => {
   console.log(e)
 })
-/* 当第一个Promise为reject时，then方法被触发，而不是直接调用catch */
+/* 当第一个Promise为reject时，then方法被触发，而不是直接调用catch？？？ */
