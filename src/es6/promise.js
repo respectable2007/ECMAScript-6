@@ -272,9 +272,9 @@ function ajax() {
     /* 发送 */
     if(options.method === 'get') {
       options.url += '&' + serialize(options.data)
-      xhr.open(options.method, options.url, false);
+      xhr.open(options.method, options.url);
     } else {
-      xhr.open(options.method, options.url, true);
+      xhr.open(options.method, options.url);
       sendUrl = serialize(options.data);
     }
     /* 超时 */

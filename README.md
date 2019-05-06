@@ -87,3 +87,6 @@ Promise链的返回值<br>
 监听多个Promise的方法<br>
 常见问题<br>
 Promise原生实现<br>
+Promise封装ajax<br>
+## 14、Async<br>
+promise构造函数<br>
