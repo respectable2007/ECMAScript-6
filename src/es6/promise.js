@@ -1,5 +1,5 @@
-import { type } from "os";
-
+// import { type } from "os";
+import { MD5 } from '../utils/md5.js';
 (()=>{
   /* promise构造函数 */
   let promise = new Promise((resolve, reject) => {
@@ -213,7 +213,7 @@ function ajax() {
     method: 'get',
     contentType: 'application/x-www-form-urlencoded'
   },
-  options = Object.assign(object, arguments[0])
+  options = Object.assign(object, arguments[0]),
   sendUrl = null,
   xhr = new XMLHttpRequest();//IE7
   /* 浏览器兼容性 */
@@ -294,4 +294,15 @@ function ajax() {
            .catch(options.error);
   return xhr;
 }
+ajax({
+  url:'/payh/login/authenticate',
+  method: 'post',
+  data: {
+    username: 'adtime',
+    password: MD5('adtime' + 12345678 + 'adtime.com')
+  },
+  success: function(e) {
+    console.log(e)
+  }
+})
 })()
