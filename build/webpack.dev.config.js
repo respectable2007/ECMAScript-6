@@ -8,7 +8,7 @@ module.exports = merge(base, {
     compress: true,
     port: 9090,
     proxy: {
-      'payh': {
+      '/payh': {
         target: 'http://10.2.30.193:8080',
         pathRewrite: {'^/payh': '/payh'}
       }

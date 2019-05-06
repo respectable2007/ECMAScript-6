@@ -1,4 +1,4 @@
-// import { type } from "os";
+import { qs } from "qs";
 import { MD5 } from '../utils/md5.js';
 (()=>{
   /* promise构造函数 */
@@ -211,7 +211,7 @@ sleep(1000).then(() => {
 function ajax() {
   let object = {
     method: 'get',
-    contentType: 'application/x-www-form-urlencoded'
+    contentType: 'application/x-www-form-urlencoded;charset=UTF-8'
   },
   options = Object.assign(object, arguments[0]),
   sendUrl = null,
@@ -242,7 +242,7 @@ function ajax() {
     xhr.onreadystatechange = () => {
       if(xhr.readyState === 4) {
         if((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
-           resolve(xhr);
+           resolve(JSON.parse(xhr.responseText));
         } else {
           reject(xhr.status);
         }
@@ -268,9 +268,10 @@ function ajax() {
     if(options.timeout) {
       xhr.timeout = options.timeout;
     }
+    options.url += '?t=' + new Date().getTime()
     /* 发送 */
     if(options.method === 'get') {
-      options.url += '?' + serialize(options.data)
+      options.url += '&' + serialize(options.data)
       xhr.open(options.method, options.url, false);
     } else {
       xhr.open(options.method, options.url, true);
@@ -304,5 +305,5 @@ ajax({
   success: function(e) {
     console.log(e)
   }
-})
+});
 })()
