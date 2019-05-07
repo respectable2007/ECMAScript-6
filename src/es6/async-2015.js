@@ -1,33 +1,6 @@
 "use strict";
-
-function _asyncToGenerator(fn) {
-  return function() {
-      var gen = fn.apply(this, arguments);
-      return new Promise(function(resolve, reject) {
-          function step(key, arg) {
-              try {
-                  var info = gen[key](arg);
-                  var value = info.value;
-              } catch(error) {
-                  reject(error);
-                  return;
-              }
-              if (info.done) {
-                  resolve(value);
-              } else {
-                  return Promise.resolve(value).then(function(value) {
-                      step("next", value);
-                  },
-                  function(err) {
-                      step("throw", err);
-                  });
-              }
-          }
-          return step("next");
-      });
-  };
-}
-// function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+const regeneratorRuntime = require('regenerator-runtime');
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
 (function () {
   var value = function () {
@@ -54,7 +27,7 @@ function _asyncToGenerator(fn) {
       return _ref.apply(this, arguments);
     };
   }();
-  /* 自调用函数，返回一个函数 */
+
   var output = function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/regeneratorRuntime.mark(function _callee2(list) {
       var lens, i;
@@ -90,7 +63,6 @@ function _asyncToGenerator(fn) {
     }));
 
     return function output(_x2) {
-      /* 改变_ref2作用域并被调用 */
       return _ref2.apply(this, arguments);
     };
   }();

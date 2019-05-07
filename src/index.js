@@ -29,4 +29,5 @@
 // import './es6/promise.js';
 // import './es6/promiseInit';
 /* async */
-import './es6/async.js';
+// import './es6/async.js';
+import './es6/async-2015.js';
