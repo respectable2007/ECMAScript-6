@@ -30,4 +30,6 @@
 // import './es6/promiseInit';
 /* async */
 // import './es6/async.js';
-import './es6/async-2015.js';
+// import './es6/async-2015.js';
+/* decorator */
+import './es6/decorator.js';

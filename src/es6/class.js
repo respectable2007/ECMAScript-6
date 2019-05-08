@@ -175,4 +175,39 @@ console.log(desc); */
 c2 = c1.slice();
 console.log(c2 instanceof MyArray1);//false
 console.log(c2 instanceof Array);//true
+
+/* 实现Human('Jack').eat().rest(5).go().sleep(10) */
+((win) => {
+  class HumanInit {
+    constructor(name) {
+      this.name = name;
+    }
+    eat() {
+      return this;
+    }
+    rest() {
+      if(arguments.length === 0) {
+        return this;
+      }
+      /* 处理代码 */
+      return this;
+    }
+    go() {
+      return this;
+    }
+    sleep() {
+      if(arguments.length === 0) {
+        return this;
+      }
+      /* 处理代码 */
+      return this;
+    }
+  }
+  let Human = function(name) {
+    return new HumanInit(name);
+  }
+  win.Human = Human;
+  return Human;
+})(window)
+console.log(Human('Jack').eat().rest(5).go().sleep(10))
 })()

@@ -89,4 +89,12 @@ Promise链的返回值<br>
 Promise原生实现<br>
 Promise封装ajax<br>
 ## 14、Async<br>
-promise构造函数<br>
+async<br>
+await<br>
+## 15、Decorator<br>
+### 需要npm install babel-plugin-transform-decorators-legacy --save-dev
+### .babelrc
+### 设置 {
+###       "plugin": ["transform-decorators-legacy"]
+###      }
+decorator<br>
