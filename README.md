@@ -95,3 +95,4 @@ await<br>
 需要npm install babel-plugin-transform-decorators-legacy --save-dev<br>
 .babelrc 添加 {"plugin": ["transform-decorators-legacy"]}<br>
 decorator<br>
+方法的修饰<br>
