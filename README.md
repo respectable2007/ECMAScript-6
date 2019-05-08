@@ -92,9 +92,6 @@ Promise封装ajax<br>
 async<br>
 await<br>
 ## 15、Decorator<br>
-### 需要npm install babel-plugin-transform-decorators-legacy --save-dev
-### .babelrc
-### 设置 {
-###       "plugin": ["transform-decorators-legacy"]
-###      }
+需要npm install babel-plugin-transform-decorators-legacy --save-dev<br>
+.babelrc 添加 {"plugin": ["transform-decorators-legacy"]}<br>
 decorator<br>
