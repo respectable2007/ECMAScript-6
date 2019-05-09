@@ -98,4 +98,4 @@ decorator<br>
 方法的修饰<br>
 ## 16、Proxy<br>
 基本用法<br>
-方法的修饰<br>
+proxy取消<br>
