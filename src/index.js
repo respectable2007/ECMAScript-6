@@ -32,4 +32,6 @@
 // import './es6/async.js';
 // import './es6/async-2015.js';
 /* decorator */
-import './es6/decorator.js';
+// import './es6/decorator.js';
+/* proxy */
+import './es6/proxy.js';
