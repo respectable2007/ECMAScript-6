@@ -1,6 +1,6 @@
 import { qs } from "qs";
 import { MD5 } from '../utils/md5.js';
-(()=>{
+((document)=>{
   /* promise构造函数 */
   let promise = new Promise((resolve, reject) => {
     console.log(resolve);
@@ -306,4 +306,22 @@ ajax({
     console.log(e)
   }
 });
-})()
+
+function loadImg(url) {
+  let p = new Promise((resolve, reject) => {
+    let img = new Image(100);
+    img.onload = function() {
+      console.log(img)
+      resolve(img)
+    }
+    img.onerror = function(e) {
+      reject(e)
+    }
+    img.src = url;
+  })
+  return p;
+}
+loadImg('http://e.hiphotos.baidu.com/image/pic/item/a6efce1b9d16fdfa53e77a47be8f8c5495ee7b94.jpg').then((data) => {
+  document.body.appendChild(data);
+})
+})(document)
